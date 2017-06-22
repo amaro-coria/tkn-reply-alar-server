@@ -5,6 +5,8 @@ import com.teknei.persistence.dao.SbopEquiAlarDAO;
 import com.teknei.persistence.entities.CctmCata;
 import com.teknei.persistence.entities.SbctAlar;
 import com.teknei.persistence.entities.SbopEquiAlar;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,9 +34,12 @@ public class AlarController {
     private final int CATA_COD_CORT_ALAR_ATN_SOLVED = 732;
     private final int CATA_COD_CORT_ALAR_ATN_UNASSIGNED = 729;
 
+    private static final Logger log = LoggerFactory.getLogger(AlarController.class);
+
     @RequestMapping(value = "/process/{idEqui}/{alarm}")
     public @ResponseBody
     String processAlarmText(@PathVariable Integer idEqui, @PathVariable String alarm) {
+        log.info("Equi: {} , alarm: {}", idEqui, alarm);
         /*
         String[] alars = text.split("\\|");
         if (alars.length < 10) {
