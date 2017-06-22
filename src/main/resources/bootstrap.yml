@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: replyalarmserver
+  cloud:
+    config:
+      uri: http://172.17.0.122:8001
+  profiles:
+    active: replyalarmserver
+server:
+  port: 9091
